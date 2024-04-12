@@ -1,10 +1,11 @@
-.homeContainer {
+.sidebarContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  width: 20%;
   height: 93vh;
+  background: #E5CFFC;
+  border-right: 2px solid #924DBF;
 }
 
 @media screen and (width < 768px) {}

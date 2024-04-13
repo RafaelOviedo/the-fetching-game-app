@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from './SignupForm.module.css';
 import axios from 'axios';
 import { ProgressSpinner } from 'primereact/progressspinner';
@@ -6,6 +7,7 @@ import { Toast } from 'primereact/toast';
 import 'primereact/resources/themes/saga-blue/theme.css';
 
 function SignupForm() {
+  const navigate = useNavigate();
   const toast = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [signupForm, setSignupForm] = useState({
@@ -41,6 +43,7 @@ function SignupForm() {
       });
 
       showSuccessToast();
+      navigate('/sign_in');
     } 
     catch (error) {
       showFailureToast();
@@ -158,6 +161,7 @@ function SignupForm() {
         </button>
       
         <button
+          onClick={() => navigate('/sign_in')}
           className={style.haveAccount}
         >
           ¿Already have an account? Sign In!

@@ -1,14 +1,16 @@
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import style from './SigninForm.module.css';
 import axios from 'axios';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Toast } from 'primereact/toast';
 import 'primereact/resources/themes/saga-blue/theme.css';
 
-function SignupForm() {
+function SigninForm() {
+  const navigate = useNavigate();
   const toast = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [signupForm, setSignupForm] = useState({
+  const [signinForm, setSigninForm] = useState({
     email: '',
     password: '',
   })
@@ -16,7 +18,7 @@ function SignupForm() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    setSignupForm(prevState => ({
+    setSigninForm(prevState => ({
       ...prevState,
       [name]: value
     }));
@@ -27,10 +29,11 @@ function SignupForm() {
     setIsLoading(true);
 
     try {
-      await axios.post('/auth', signupForm);
+      await axios.post('/auth', signinForm);
 
-      setSignupForm({ email: '', password: '' });
+      setSigninForm({ email: '', password: '' });
       showSuccessToast();
+      navigate('/home')
     } 
     catch (error) {
       showFailureToast();
@@ -60,7 +63,7 @@ function SignupForm() {
           Email*
         </label>
         <input
-          value={signupForm.email}
+          value={signinForm.email}
           className={style.inputBox}
           type="email"
           name="email"
@@ -76,7 +79,7 @@ function SignupForm() {
           Password*
         </label>
         <input
-          value={signupForm.password}
+          value={signinForm.password}
           className={style.inputBox}
           type="password"
           name="password"
@@ -100,7 +103,8 @@ function SignupForm() {
         </button>
       
         <button
-          className={style.haveAccount}
+          onClick={() => navigate('/sign_up')}
+          className={style.dontHaveAccount}
         >
           ¿Don't have an account? Sign Up!
         </button>
@@ -109,4 +113,4 @@ function SignupForm() {
   )
 }
 
-export default SignupForm;
+export default SigninForm;

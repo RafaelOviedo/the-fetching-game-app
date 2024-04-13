@@ -7,4 +7,13 @@
   height: 93vh;
 }
 
+.haveAccount {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-size: 18px;
+  text-decoration: underline;
+}
+
 @media screen and (width < 768px) {}

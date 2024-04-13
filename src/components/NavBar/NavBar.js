@@ -20,7 +20,7 @@ function NavBar() {
       <div className={style.logoContainer}>
         <i onClick={() => dispatch(openSidebar())} className='pi pi-list' style={ { fontSize: '25px', color: '#fff', cursor: 'pointer', display: isSidebarOpen ? 'none': 'block' } }></i>
         <i onClick={() => dispatch(closeSidebar())} className='pi pi-times' style={ { fontSize: '25px', color: '#fff', cursor: 'pointer', display: !isSidebarOpen ? 'none': 'block' } }></i>
-        <span style={ { fontSize: '20px', fontWeight: 500, color: '#fff' } }>THE FETCHING GAME</span>
+        <span onClick={() => navigate('/home')} style={ { fontSize: '20px', fontWeight: 500, color: '#fff', cursor: 'pointer' } }>THE FETCHING GAME</span>
       </div>
 
       <div className={style.navBox}>

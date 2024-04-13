@@ -1,12 +1,17 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../features/auth/authSlice';
+
 import style from './SigninForm.module.css';
 import axios from 'axios';
+
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { Toast } from 'primereact/toast';
 import 'primereact/resources/themes/saga-blue/theme.css';
 
 function SigninForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const toast = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +34,11 @@ function SigninForm() {
     setIsLoading(true);
 
     try {
-      await axios.post('/auth', signinForm);
+      const response = await axios.post('/auth', signinForm);
+      const user = response.data.user;
+      const token = response.data.jwt;
+
+      dispatch(setUser({ user: user, token: token }));
 
       setSigninForm({ email: '', password: '' });
       showSuccessToast();

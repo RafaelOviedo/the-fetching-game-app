@@ -1,12 +1,19 @@
-import style from './NavBar.module.css'
-import { Link } from "react-router-dom";
+import style from './NavBar.module.css';
+import { Link, useNavigate } from "react-router-dom";
 import 'primeicons/primeicons.css';
-import { useDispatch, useSelector } from 'react-redux'
-import { openSidebar, closeSidebar } from '../../features/sidebar/sidebarSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { openSidebar, closeSidebar } from '../../features/sidebar/sidebarSlice';
+import { logout } from '../../features/auth/authSlice';
 
 function NavBar() {
-  const dispatch = useDispatch()
-  const isSidebarOpen = useSelector((state) => state.sidebar.value)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isSidebarOpen = useSelector((state) => state.sidebar.value);
+
+  const signOut = () => {
+    dispatch(logout());
+    navigate('/');
+  }
 
   return (
     <nav className={style.navContainer}>
@@ -45,12 +52,12 @@ function NavBar() {
           <i className='pi pi-user'></i>
         </Link>
 
-        <div className={style.linkItem}>
+        <button onClick={signOut} className={style.logout}>
           <span>Logout</span>
           &nbsp;
           &nbsp;
           <i className='pi pi-sign-out'></i>
-        </div>
+        </button>
       </div>
     </nav>
   )

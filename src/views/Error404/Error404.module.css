@@ -1,0 +1,10 @@
+.error404Component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1;
+  height: 93vh;
+}
+
+@media screen and (width < 768px) {}

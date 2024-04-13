@@ -49,6 +49,7 @@
   font-weight: 600;
   color: #7338A0;
   cursor: pointer;
+  font-size: 15px;
 }
 .signInButton {
   display: flex;
@@ -62,6 +63,7 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+  font-size: 15px;
 }
 
 @media screen and (width < 768px) {}

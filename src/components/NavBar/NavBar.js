@@ -18,7 +18,7 @@ function NavBar() {
 
       <div className={style.navBox}>
         <Link 
-          to='/'
+          to='/home'
           className={style.linkItem} 
         >
           Home
@@ -38,12 +38,12 @@ function NavBar() {
           About
         </Link>
 
-        <div className={style.linkItem}>
+        <Link to='/profile' className={style.linkItem}>
           <span>Profile</span>
           &nbsp;
           &nbsp;
           <i className='pi pi-user'></i>
-        </div>
+        </Link>
 
         <div className={style.linkItem}>
           <span>Logout</span>

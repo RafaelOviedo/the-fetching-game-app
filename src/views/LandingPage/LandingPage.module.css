@@ -1,0 +1,10 @@
+.landingPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 93vh;
+}
+
+@media screen and (width < 768px) {}

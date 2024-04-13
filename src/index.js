@@ -6,6 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router} from "react-router-dom";
 import store from './store/store'
 import { Provider } from 'react-redux'
+import axios from 'axios';
+
+// axios config
+// axios.defaults.headers.common['Authorization'] = store.getters.token;
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

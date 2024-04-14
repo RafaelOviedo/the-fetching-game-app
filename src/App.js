@@ -10,6 +10,7 @@ import BuyNewLevel from './views/BuyNewLevel/BuyNewLevel';
 import About from './views/About/About';
 import Error404 from './views/Error404/Error404';
 import UserProfile from './views/UserProfile/UserProfile';
+import LevelDetails from './views/LevelDetails/LevelDetails';
 import style from './App.module.css'
 import { useSelector } from 'react-redux'
 
@@ -30,6 +31,7 @@ function App() {
           { currentUser ? <Route path='/home' element={<Home />} /> : <Route path="/home" element={<Navigate to="/" />} /> }
           { currentUser ? <Route path='/buy_a_level' element={<BuyNewLevel />} /> : <Route path="/buy_a_level" element={<Navigate to="/" />} /> }
           { currentUser ? <Route path='/profile' element={<UserProfile />} /> : <Route path="/profile" element={<Navigate to="/" />} /> }
+          { currentUser ? <Route path='/levels/:id' element={<LevelDetails />} /> : <Route path="/levels/:id" element={<Navigate to="/" />} /> }
 
           <Route path='/*' element={<Error404 />} />
         </Routes>

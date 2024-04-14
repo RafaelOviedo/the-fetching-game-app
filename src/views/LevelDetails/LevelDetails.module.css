@@ -1,0 +1,32 @@
+.levelDetailsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 93vh;
+}
+.codeEditorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 70%;
+  height: 100%;
+}
+.dropdownsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60%;
+  height: 10%;
+}
+.descriptionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  border: 1px solid black;
+}
+
+@media screen and (width < 768px) {}

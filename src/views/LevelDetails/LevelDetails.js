@@ -10,10 +10,8 @@ import { languageOptions } from "../../constants/languageOptions";
 import { defineTheme } from "../../lib/defineTheme";
 import axios from 'axios';
 
-axios.defaults.baseURL = undefined;
-
 function LevelDetails() {
-  const javascriptDefault = `// some comment`;
+  const javascriptDefault = `// Write your code below`;
   const [code, setCode] = useState(javascriptDefault);
   const [theme, setTheme] = useState("cobalt");
   const [language, setLanguage] = useState(languageOptions[0]);
@@ -49,14 +47,18 @@ function LevelDetails() {
 
   const checkStatus = async (token) => {
     const options = {
-      method: "GET",
-      url: process.env.REACT_APP_RAPID_API_URL + "/" + token,
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+      method: 'GET',
+      url: `${process.env.REACT_APP_RAPID_API_URL}/${token}`,
+      params: {
+        base64_encoded: 'true',
+        fields: '*'
       },
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST
+      }
     };
+
     try {
       let response = await axios.request(options);
       let statusId = response.data.status?.id;
@@ -67,13 +69,13 @@ function LevelDetails() {
         setTimeout(() => {
           checkStatus(token)
         }, 2000)
-        return
+        return;
       } else {
         setProcessing(false)
         setOutputDetails(response.data)
         // showSuccessToast(`Compiled Successfully!`)
         console.log('response.data', response.data)
-        return
+        return;
       }
     } catch (err) {
       console.log("err", err);
@@ -84,24 +86,25 @@ function LevelDetails() {
 
   const handleCompile = () => {
     setProcessing(true);
-    const formData = {
-      language_id: language.id,
-      // encode source code in base64
-      source_code: btoa(code),
-      stdin: btoa(customInput),
-    };
 
     const options = {
-      method: "POST",
+      method: 'POST',
       url: process.env.REACT_APP_RAPID_API_URL,
-      params: { base64_encoded: "true", fields: "*" },
-      headers: {
-        "content-type": "application/json",
-        "Content-Type": "application/json",
-        "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+      params: {
+        base64_encoded: 'true',
+        fields: '*'
       },
-      data: formData,
+      headers: {
+        'content-type': 'application/json',
+        'Content-Type': 'application/json',
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST,
+      },
+      data: {
+        language_id: language.id,
+        source_code: btoa(code),
+        stdin: btoa(customInput),
+      }
     };
 
     axios
